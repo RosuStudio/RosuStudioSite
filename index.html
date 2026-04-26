@@ -805,10 +805,15 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 }
 
 @media (min-width: 769px) {
+  .hero-red {
+    width: 36%;
+    clip-path: polygon(34% 0%,100% 0%,100% 100%,8% 100%);
+  }
+  .hero-dots-tr { right: calc(34% + 56px); }
   .hero-tagline,
   .hero-contact-btn,
-  .hero-scroll-hint { transform: translate(-70px, -24px); }
-  .hero-contact-btn:hover { transform: translate(-70px, -26px); }
+  .hero-scroll-hint { transform: translateY(-24px); }
+  .hero-contact-btn:hover { transform: translateY(-26px); }
   .hero-tagline { margin-top: -10px; }
   .hero-contact-btn { margin-top: 6px; }
   .hero-scroll-hint { width: 340px; margin-top: 8px; }
