@@ -701,10 +701,21 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
     ENTRAR EM CONTATO
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
-  <button class="nav-burger" id="navBurger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+</div>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" id="mobClose">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <nav class="mob-nav">
+    <button class="mob-link" onclick="closeMenu();scrollToSection('servicos')">Serviços</button>
+    <button class="mob-link" onclick="closeMenu();scrollToSection('portfolio')">Portfólio</button>
+    <button class="mob-link" onclick="closeMenu();scrollToSection('como-funciona')">Como Funciona</button>
+    <button class="mob-link" onclick="closeMenu();scrollToSection('sobre')">Sobre Mim</button>
+    <button class="mob-cta" onclick="closeMenu();scrollToSection('contato')">Entrar em Contato →</button>
+  </nav>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -959,75 +970,6 @@ const rv=new IntersectionObserver(entries=>entries.forEach(e=>{
 }),{threshold:0.08});
 document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
 </script>
-
-/* ══ HAMBURGER ══ */
-.nav-burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 40px; height: 40px;
-  background: none; border: none; cursor: pointer;
-  padding: 4px;
-}
-.nav-burger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--black); border-radius: 2px;
-  transition: all 0.25s;
-}
-
-/* ══ MOBILE MENU OVERLAY ══ */
-.mob-menu {
-  position: fixed; inset: 0; z-index: 500;
-  background: rgba(10,10,10,0.97);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s;
-}
-.mob-menu.open {
-  opacity: 1; pointer-events: all;
-}
-.mob-close {
-  position: absolute; top: 24px; right: 24px;
-  width: 44px; height: 44px;
-  background: rgba(255,255,255,0.08); border: none; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: #fff;
-  transition: background 0.2s;
-}
-.mob-close:hover { background: rgba(255,255,255,0.16); }
-.mob-close svg { width: 20px; height: 20px; }
-.mob-nav {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  width: 100%; padding: 0 32px;
-}
-.mob-link {
-  background: none; border: none; cursor: pointer;
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(32px, 10vw, 48px);
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 1px; text-transform: uppercase;
-  padding: 10px 0; width: 100%; text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: color 0.2s;
-}
-.mob-link:hover, .mob-link:active { color: var(--red); }
-.mob-cta {
-  margin-top: 24px;
-  background: var(--red); color: #fff; border: none;
-  font-family: 'Raleway', sans-serif; font-weight: 800;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
-  padding: 16px 40px; cursor: pointer;
-  transition: background 0.2s; border-radius: 4px;
-}
-.mob-cta:hover { background: var(--red-dark); }
-
-@media (max-width: 768px) {
-  .nav-burger { display: flex; }
-  .nav-cta { display: none; }
-}
 <style>
 @media (max-width: 768px) {
   .nav-wrap { width: calc(100% - 20px); top: 10px; }
@@ -1091,16 +1033,24 @@ document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
   .hero-logo-img { width: 82vw; }
 }
 </style>
+<style>
+.nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all .25s}
+.mob-menu{position:fixed;inset:0;z-index:500;background:rgba(8,8,8,0.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-close{position:absolute;top:24px;right:24px;width:44px;height:44px;background:rgba(255,255,255,0.08);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:background .2s}
+.mob-close svg{width:20px;height:20px}
+.mob-nav{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;padding:0 32px}
+.mob-link{background:none;border:none;cursor:pointer;font-family:'Anton',sans-serif;font-size:clamp(32px,10vw,46px);color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;padding:12px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .2s}
+.mob-link:active,.mob-link:hover{color:var(--red)}
+.mob-cta{margin-top:28px;background:var(--red);color:#fff;border:none;font-family:'Raleway',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:16px 44px;cursor:pointer;transition:background .2s;border-radius:3px}
+.mob-cta:active,.mob-cta:hover{background:var(--red-dark)}
+@media(max-width:768px){.nav-burger{display:flex}.nav-cta{display:none}}
+</style>
 <script>
-function closeMenu() {
-  document.getElementById('mobMenu').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('navBurger').addEventListener('click', function() {
-  document.getElementById('mobMenu').classList.add('open');
-  document.body.style.overflow = 'hidden';
-});
-document.getElementById('mobClose').addEventListener('click', closeMenu);
+function closeMenu(){document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('navBurger').addEventListener('click',function(){document.getElementById('mobMenu').classList.add('open');document.body.style.overflow='hidden';});
+document.getElementById('mobClose').addEventListener('click',closeMenu);
 </script>
 </body>
 </html>
