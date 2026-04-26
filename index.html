@@ -774,6 +774,35 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 }
 .hero-contact-btn svg { width: 17px; height: 17px; }
 
+.hero-scroll-hint{
+  display:inline-flex;flex-direction:column;align-items:center;gap:5px;
+  margin-top:18px;padding:0;
+  background:transparent;border:0;color:rgba(17,17,17,0.58);
+  font-family:'Raleway',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2.4px;text-transform:uppercase;text-align:center;
+  cursor:pointer;position:relative;z-index:5;
+  transition:color 0.2s,transform 0.2s;
+}
+.hero-scroll-hint::before,
+.hero-scroll-hint::after{
+  display:none;
+}
+.hero-scroll-br{color:var(--red);font-size:15px;font-weight:300;line-height:1;flex-shrink:0}
+.hero-scroll-copy{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.55}
+.hero-scroll-line{display:inline-flex;align-items:center;gap:8px}
+.hero-scroll-hint svg{
+  width:13px;height:13px;color:var(--red);
+  animation:hintArrow 1.8s ease-in-out infinite;
+}
+.hero-scroll-hint:hover{
+  color:rgba(17,17,17,0.82);
+  transform:translateY(2px);
+}
+@keyframes hintArrow{
+  0%,100%{transform:translateY(-1px);opacity:0.55}
+  50%{transform:translateY(4px);opacity:1}
+}
+
 /* Dots float gently */
 .hero-dots-tr span, .hero-dots-bl span {
   animation: dotFade 3s ease-in-out infinite;
@@ -827,6 +856,10 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   .hero-contact-btn { font-size: 10.5px; letter-spacing: 1.8px; gap: 10px; flex-wrap: nowrap; padding: 16px 26px; white-space: nowrap; box-shadow: 0 6px 24px rgba(229,9,20,0.35); }
   .hero-tagline { font-size: 10px; letter-spacing: 2px; gap: 6px; white-space: nowrap; }
   .hero-tagline::before, .hero-tagline::after { width: 18px; }
+  .hero-scroll-hint { width: 230px; margin-top: 14px; gap: 4px; font-size: 8px; letter-spacing: 1.05px; justify-content: center; transform: translateX(-48px); }
+  .hero-scroll-copy { line-height: 1.5; }
+  .hero-scroll-br { font-size: 15px; }
+  .hero-scroll-hint svg { position: static; width: 11px; height: 11px; }
 
   .sec-cta { flex-direction: column; align-items: flex-start; gap: 16px; }
   .sec-cta-btn { width: 100%; justify-content: center; }
@@ -951,6 +984,13 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
     <button class="hero-contact-btn" onclick="scrollToSection('contato')">
       <span>ENTRAR EM CONTATO</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="hero-scroll-hint" onclick="scrollToSection('servicos')" aria-label="Rolar para baixo para entender nosso trabalho">
+      <span class="hero-scroll-copy">
+        <span class="hero-scroll-line"><span class="hero-scroll-br">[</span>OU ROLE PARA BAIXO<span class="hero-scroll-br">]</span></span>
+        <span>ENTENDA NOSSO TRABALHO</span>
+      </span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </button>
   </div>
 </section>
