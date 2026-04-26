@@ -27,8 +27,9 @@ body{font-family:'Raleway',sans-serif;background:var(--light);color:var(--black)
   z-index:200;width:calc(100% - 48px);max-width:1300px;
 }
 nav{
-  background:#ffffff;
-  border:1px solid rgba(0,0,0,0.09);
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(0,0,0,0.07);
   border-radius:12px;
   box-shadow:0 4px 24px rgba(0,0,0,0.10),0 1px 4px rgba(0,0,0,0.06);
   padding:0 28px;
@@ -701,20 +702,15 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
   <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
-</div>
 
-<div class="mob-menu" id="mobMenu">
-  <button class="mob-close" id="mobClose">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
-  <nav class="mob-nav">
+  <div class="mob-panel" id="mobPanel">
     <button class="mob-link" onclick="closeMenu();scrollToSection('servicos')">Serviços</button>
     <button class="mob-link" onclick="closeMenu();scrollToSection('portfolio')">Portfólio</button>
     <button class="mob-link" onclick="closeMenu();scrollToSection('como-funciona')">Como Funciona</button>
     <button class="mob-link" onclick="closeMenu();scrollToSection('sobre')">Sobre Mim</button>
     <button class="mob-cta" onclick="closeMenu();scrollToSection('contato')">Entrar em Contato →</button>
-  </nav>
+  </div>
+</nav>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -1033,31 +1029,46 @@ document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
 }
 </style>
 <style>
+/* ── hamburger ── */
 .nav-burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
-.nav-burger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all .25s}
-.mob-menu{position:fixed;inset:0;z-index:9999;background:#0a0a0a;display:none;align-items:center;justify-content:center}
-.mob-menu.open{display:flex}
-.mob-close{position:absolute;top:24px;right:24px;width:44px;height:44px;background:rgba(255,255,255,0.08);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:background .2s}
-.mob-close svg{width:20px;height:20px}
-.mob-nav{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;padding:0 32px}
-.mob-link{background:none;border:none;cursor:pointer;font-family:'Anton',sans-serif;font-size:clamp(32px,10vw,46px);color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;padding:12px 0;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,0.07);transition:color .2s}
-.mob-link:active,.mob-link:hover{color:var(--red)}
-.mob-cta{margin-top:28px;background:var(--red);color:#fff;border:none;font-family:'Raleway',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:16px 44px;cursor:pointer;transition:background .2s;border-radius:3px}
-.mob-cta:active,.mob-cta:hover{background:var(--red-dark)}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:transform .25s,opacity .25s}
+/* ── mobile panel (inside nav-wrap) ── */
+.mob-panel{display:none;flex-direction:column;align-items:center;gap:0;width:100%}
+/* ── nav-wrap expanded state ── */
+.nav-wrap.menu-open{
+  top:0!important;left:0!important;right:0!important;bottom:0!important;
+  width:100%!important;max-width:100%!important;margin:0!important;
+  border-radius:0!important;
+}
+.nav-wrap.menu-open nav{
+  flex-direction:column!important;justify-content:flex-start!important;align-items:center!important;
+  height:100vh!important;height:100dvh!important;
+  padding:24px 0 40px!important;background:#0a0a0a!important;border-radius:0!important;
+  border:none!important;box-shadow:none!important;gap:0!important;width:100%!important;
+}
+.nav-wrap.menu-open .nav-logo-img{filter:brightness(0) invert(1)}
+.nav-wrap.menu-open .nav-burger span{background:#fff}
+.nav-wrap.menu-open .nav-links,.nav-wrap.menu-open .nav-divider,.nav-wrap.menu-open .nav-cta{display:none}
+.nav-wrap.menu-open .mob-panel{display:flex;flex:1;justify-content:center;width:100%;padding:0 24px}
+.mob-link{background:none;border:none;border-bottom:1px solid rgba(255,255,255,0.08);cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;font-family:'Anton',sans-serif;font-size:clamp(28px,9vw,42px);color:rgba(255,255,255,0.75);letter-spacing:1px;text-transform:uppercase;padding:14px 0;width:100%;text-align:center;transition:color .15s}
+.mob-link:active{color:#E50914}
+.mob-cta{display:block;width:100%;margin-top:28px;background:#E50914;color:#fff;border:none;font-family:'Raleway',sans-serif;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:16px 0;cursor:pointer;border-radius:3px;-webkit-tap-highlight-color:transparent}
+/* hamburger X animation */
+.nav-wrap.menu-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-wrap.menu-open .nav-burger span:nth-child(2){opacity:0}
+.nav-wrap.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:768px){.nav-burger{display:flex}.nav-cta{display:none}}
 </style>
 <script>
 function closeMenu(){
-  document.getElementById('mobMenu').classList.remove('open');
+  document.querySelector('.nav-wrap').classList.remove('menu-open');
   document.body.style.overflow='';
-  document.querySelector('.nav-wrap').style.visibility='';
 }
 document.getElementById('navBurger').addEventListener('click',function(){
-  document.querySelector('.nav-wrap').style.visibility='hidden';
-  document.getElementById('mobMenu').classList.add('open');
-  document.body.style.overflow='hidden';
+  var nw=document.querySelector('.nav-wrap');
+  if(nw.classList.contains('menu-open')){closeMenu();}
+  else{nw.classList.add('menu-open');document.body.style.overflow='hidden';}
 });
-document.getElementById('mobClose').addEventListener('click',closeMenu);
 </script>
 </body>
 </html>
