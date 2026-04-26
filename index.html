@@ -598,6 +598,86 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   to   { transform: rotate(-360deg); }
 }
 
+
+/* ══════════════════════════════════════════
+   RESPONSIVO — MOBILE
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav-wrap { width: calc(100% - 20px); top: 10px; }
+  nav { padding: 0 14px; height: 58px; }
+  .nav-links, .nav-divider { display: none; }
+  .nav-logo-img { height: 42px; }
+  .nav-cta { padding: 9px 14px; font-size: 10px; letter-spacing: 1px; gap: 6px; }
+  .nav-cta svg { display: none; }
+
+  /* HERO */
+  #hero { padding-top: 74px; min-height: 100svh; }
+  .hero-logo-img { width: min(300px, 78vw); }
+  .hero-red { width: 52%; }
+  .hero-lens { width: 340px; height: 340px; left: -60px; }
+  .hero-arc { display: none; }
+  .hero-dots-tr { display: none; }
+  .hero-dots-bl { bottom: 60px; left: 20px; }
+  .hero-contact-btn { font-size: 11px; padding: 14px 24px; }
+
+  /* SERVIÇOS */
+  #servicos { padding: 56px 20px 44px; }
+  .srv-grid { grid-template-columns: 1fr; background: none; gap: 2px; }
+  .srv-card { padding: 32px 28px; }
+
+  /* PORTFÓLIO */
+  .portfolio-cta { padding: 64px 20px; flex-direction: column; }
+  .pcta-dots { display: none; }
+  .pcta-title { font-size: clamp(56px, 16vw, 80px); }
+
+  /* COMO FUNCIONA + COMO TRABALHAMOS */
+  .process { padding: 56px 20px 48px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step { padding: 24px 16px; border-left: 1px solid rgba(0,0,0,0.07); }
+  .step:first-child { border-left: none; padding-left: 0; }
+  .step:nth-child(3) { border-left: none; padding-left: 0; }
+  .step-n { font-size: 38px; }
+
+  .ct-grid { grid-template-columns: 1fr; }
+  .ct-divider { padding: 16px 0; margin-top: 0; flex-direction: row; }
+  .ct-ou { writing-mode: horizontal-tb; font-size: 16px; }
+  .ct-card { padding: 32px 24px; }
+
+  /* DEPOIMENTOS */
+  .testi { padding: 56px 20px 44px; }
+  .testi-grid { grid-template-columns: 1fr; gap: 2px; }
+  .t-card { padding: 28px 24px; }
+
+  /* CONTATO */
+  #contato { padding: 56px 20px 48px; }
+  .contact-simple { grid-template-columns: 1fr; gap: 36px; }
+  .cs-title { font-size: clamp(40px, 13vw, 64px); }
+  .cs-right { width: 100%; }
+  .cs-wa-btn { width: 100%; justify-content: center; padding: 16px 24px; font-size: 13px; }
+
+  /* SOBRE MIM */
+  #sobre { padding: 56px 20px 48px; flex-direction: column; gap: 36px; align-items: flex-start; }
+  .me-visual { width: 100%; }
+  .me-avatar { width: 180px; height: 180px; }
+  .me-name { font-size: 44px; }
+  .me-bio { font-size: 14px; }
+
+  /* FOOTER */
+  footer { padding: 28px 20px; flex-direction: column; gap: 12px; text-align: center; }
+
+  /* CONTATO INFO */
+  .cd-item { font-size: 13px; }
+}
+
+@media (max-width: 400px) {
+  .steps { grid-template-columns: 1fr; }
+  .step:nth-child(3) { border-left: none; padding-left: 0; }
+  .step { border-left: none; }
+  .hero-logo-img { width: 82vw; }
+  .nav-cta { display: none; }
+}
 </style>
 </head>
 <body>
