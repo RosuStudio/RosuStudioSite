@@ -473,11 +473,18 @@ nav{
 .me-social a svg{width:16px;height:16px}
 
 /* ══ FOOTER ══ */
-footer{background:#080808;padding:36px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05)}
-.fl{font-family:'Anton',sans-serif;font-size:21px;color:#fff}
-.fl span{color:var(--red)}
-.ft{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.2);font-weight:600;text-transform:uppercase;margin-top:3px}
-.fc{font-size:12px;color:rgba(255,255,255,0.15)}
+footer{
+  background:#080808;padding:42px 80px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  border-top:2px solid rgba(229,9,20,0.82);
+}
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.footer-logo{width:190px;height:auto;display:block}
+.ft{
+  font-size:11px;letter-spacing:2.6px;
+  color:rgba(255,255,255,0.88);font-weight:700;text-transform:uppercase;
+}
+.fc{font-size:13px;color:rgba(255,255,255,0.76);font-weight:500}
 
 /* ══ REVEALS ══ */
 .rv{opacity:0;transform:translateY(16px);transition:opacity 0.5s,transform 0.5s}
@@ -927,7 +934,11 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   .me-bio { font-size: 14px; }
 
   /* FOOTER */
-  footer { padding: 28px 20px; flex-direction: column; gap: 12px; text-align: center; }
+  footer { padding: 32px 20px; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+  .footer-brand { align-items: center; }
+  .footer-logo { width: 170px; }
+  .ft { font-size: 9px; letter-spacing: 1.8px; }
+  .fc { font-size: 12px; line-height: 1.5; }
 
 }
 
@@ -1217,7 +1228,10 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 </section>
 
 <footer>
-  <div><div class="fl">RO<span>S</span>U Studio</div><div class="ft">Criar • Capturar • Transformar</div></div>
+  <div class="footer-brand">
+    <img class="footer-logo" src="assets/img/rosu-logo-footer.png" alt="Rosu Studio">
+    <div class="ft">Criar • Capturar • Transformar</div>
+  </div>
   <div class="fc">© 2025 Rosu Studio. Todos os direitos reservados.</div>
 </footer>
 
