@@ -715,10 +715,16 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 
 /* Hero tagline */
 .hero-tagline{
-  font-size:15px;font-weight:500;
-  color:rgba(0,0,0,0.48);letter-spacing:0.3px;
-  text-align:center;margin-top:18px;
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:17px;font-weight:700;
+  color:rgba(0,0,0,0.72);letter-spacing:0.8px;
+  text-align:center;margin-top:10px;
   position:relative;z-index:5;
+  text-transform:uppercase;
+}
+.hero-tagline::before,.hero-tagline::after{
+  content:'';width:28px;height:1.5px;
+  background:var(--red);flex-shrink:0;
 }
 
 /* Section CTA strip */
@@ -742,17 +748,22 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 
 /* Contact button in hero */
 .hero-contact-btn {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 12px;
   background: var(--red); color: #fff; border: none;
-  padding: 14px 32px;
-  font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px;
-  letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
-  margin-top: 28px;
-  transition: all 0.2s;
+  padding: 18px 48px;
+  font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 13px;
+  letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.25s;
   position: relative; z-index: 5;
+  box-shadow: 0 8px 32px rgba(229,9,20,0.38);
 }
-.hero-contact-btn:hover { background: var(--red-dark); gap: 16px; }
-.hero-contact-btn svg { width: 15px; height: 15px; }
+.hero-contact-btn:hover {
+  background: var(--red-dark); gap: 18px;
+  box-shadow: 0 12px 44px rgba(229,9,20,0.55);
+  transform: translateY(-2px);
+}
+.hero-contact-btn svg { width: 17px; height: 17px; }
 
 /* Dots float gently */
 .hero-dots-tr span, .hero-dots-bl span {
@@ -795,8 +806,9 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   .hero-float-line { display: none; }
   .hero-dots-tr { display: none; }
   .hero-dots-bl { bottom: 60px; left: 20px; }
-  .hero-contact-btn { font-size: 11px; padding: 14px 24px; }
-  .hero-tagline { font-size: 13px; }
+  .hero-contact-btn { font-size: 12px; padding: 16px 32px; box-shadow: 0 6px 24px rgba(229,9,20,0.35); }
+  .hero-tagline { font-size: 13px; letter-spacing: 0.5px; }
+  .hero-tagline::before, .hero-tagline::after { width: 18px; }
 
   .sec-cta { flex-direction: column; align-items: flex-start; gap: 16px; }
   .sec-cta-btn { width: 100%; justify-content: center; }
