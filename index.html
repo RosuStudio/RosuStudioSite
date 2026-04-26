@@ -789,7 +789,8 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 }
 .hero-scroll-br{color:var(--red);font-size:15px;font-weight:300;line-height:1;flex-shrink:0}
 .hero-scroll-copy{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.55}
-.hero-scroll-line{display:inline-flex;align-items:center;gap:8px}
+.hero-scroll-line{display:inline-flex;align-items:center;justify-content:center;gap:8px;max-width:min(620px,86vw)}
+.hero-scroll-text{line-height:1.55}
 .hero-scroll-hint svg{
   width:13px;height:13px;color:var(--red);
   animation:hintArrow 1.8s ease-in-out infinite;
@@ -801,6 +802,18 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 @keyframes hintArrow{
   0%,100%{transform:translateY(-1px);opacity:0.55}
   50%{transform:translateY(4px);opacity:1}
+}
+
+@media (min-width: 769px) {
+  .hero-tagline,
+  .hero-contact-btn,
+  .hero-scroll-hint { transform: translate(-70px, -24px); }
+  .hero-contact-btn:hover { transform: translate(-70px, -26px); }
+  .hero-tagline { margin-top: -10px; }
+  .hero-contact-btn { margin-top: 6px; }
+  .hero-scroll-hint { width: 340px; margin-top: 8px; }
+  .hero-scroll-line { max-width: 320px; }
+  .hero-scroll-text { max-width: 272px; }
 }
 
 /* Dots float gently */
@@ -858,6 +871,8 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   .hero-tagline::before, .hero-tagline::after { width: 18px; }
   .hero-scroll-hint { width: 230px; margin-top: 10px; gap: 3px; font-size: 8px; letter-spacing: 1.05px; justify-content: center; transform: translateX(-48px); }
   .hero-scroll-copy { line-height: 1.5; }
+  .hero-scroll-line { max-width: 210px; gap: 6px; }
+  .hero-scroll-text { max-width: 170px; }
   .hero-scroll-br { font-size: 15px; }
   .hero-scroll-hint svg { position: static; width: 11px; height: 11px; }
 
@@ -987,8 +1002,7 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
     </button>
     <button class="hero-scroll-hint" onclick="scrollToSection('servicos')" aria-label="Rolar para baixo para entender nosso trabalho">
       <span class="hero-scroll-copy">
-        <span class="hero-scroll-line"><span class="hero-scroll-br">[</span>OU ROLE PARA BAIXO<span class="hero-scroll-br">]</span></span>
-        <span>ENTENDA NOSSO TRABALHO</span>
+        <span class="hero-scroll-line"><span class="hero-scroll-br">[</span><span class="hero-scroll-text">ROLE PARA BAIXO E ENTENDA NOSSO TRABALHO</span><span class="hero-scroll-br">]</span></span>
       </span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </button>
