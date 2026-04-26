@@ -596,47 +596,71 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   to   { transform: rotate(360deg); }
 }
 
-/* Arc rings orbit */
+/* ══ ARC SYSTEM — conic-gradient + mask ══ */
 .hero-arc {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   top: 50%; left: 50%;
-  z-index: 1;
+  z-index: 2;
 }
+
+/* Main outer arc — 170° visible, strongest at 9 o'clock (left) */
 .hero-arc-1 {
-  width: 480px; height: 480px;
-  border: 2px solid transparent;
-  border-top-color: rgba(229,9,20,0.75);
-  border-right-color: rgba(229,9,20,0.35);
-  border-bottom-color: rgba(229,9,20,0.1);
-  box-shadow: 0 0 12px rgba(229,9,20,0.15);
-  animation: arcSpin1 10s linear infinite;
+  width: 560px; height: 560px;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 182deg,
+    rgba(229,9,20,0.04) 192deg,
+    rgba(229,9,20,0.55) 213deg,
+    rgba(229,9,20,0.9)  250deg,
+    rgba(229,9,20,0.95) 270deg,
+    rgba(229,9,20,0.85) 300deg,
+    rgba(229,9,20,0.45) 328deg,
+    rgba(229,9,20,0.06) 348deg,
+    transparent 355deg 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), white calc(100% - 1.8px));
+  mask:         radial-gradient(farthest-side, transparent calc(100% - 1.8px), white calc(100% - 1.8px));
+  animation: arcSpin1 22s linear infinite;
 }
+
+/* Inner arc — shorter arc, counter-rotation */
 .hero-arc-2 {
-  width: 640px; height: 640px;
-  border: 1.5px solid transparent;
-  border-bottom-color: rgba(229,9,20,0.6);
-  border-left-color: rgba(229,9,20,0.25);
-  border-top-color: rgba(229,9,20,0.08);
-  animation: arcSpin2 16s linear infinite;
+  width: 420px; height: 420px;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 105deg,
+    rgba(229,9,20,0.03) 120deg,
+    rgba(229,9,20,0.4)  145deg,
+    rgba(229,9,20,0.6)  180deg,
+    rgba(229,9,20,0.35) 215deg,
+    rgba(229,9,20,0.05) 232deg,
+    transparent 245deg 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+  mask:         radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+  animation: arcSpin2 14s linear infinite;
 }
+
+/* Outer accent arc — large, very faint */
 .hero-arc-3 {
-  width: 820px; height: 820px;
-  border: 1px solid transparent;
-  border-top-color: rgba(229,9,20,0.3);
-  border-right-color: rgba(229,9,20,0.12);
-  animation: arcSpin1 28s linear infinite;
+  width: 710px; height: 710px;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 215deg,
+    rgba(229,9,20,0.02) 228deg,
+    rgba(229,9,20,0.18) 260deg,
+    rgba(229,9,20,0.22) 285deg,
+    rgba(229,9,20,0.1)  318deg,
+    rgba(229,9,20,0.02) 340deg,
+    transparent 352deg 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  mask:         radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  animation: arcSpin1 38s linear infinite reverse;
 }
-/* Small red accent dot that travels the arc */
-.hero-arc-1::after {
-  content:'';
-  position:absolute;top:-3px;left:50%;
-  width:6px;height:6px;
-  background:var(--red);border-radius:50%;
-  box-shadow:0 0 10px 3px rgba(229,9,20,0.6);
-  transform:translateX(-50%);
-}
+
 @keyframes arcSpin1 {
   from { transform: translate(-50%,-50%) rotate(0deg); }
   to   { transform: translate(-50%,-50%) rotate(360deg); }
