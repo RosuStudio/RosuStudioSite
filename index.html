@@ -415,14 +415,11 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
   padding:48px 44px;
   position:relative;
   overflow:hidden;
+  border:2px solid var(--red);
+  border-radius:4px;
   transition:transform 0.25s,box-shadow 0.25s;
 }
-.ct-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.10)}
-.ct-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:rgba(0,0,0,0.06);
-}
-.ct-card:last-child::before{background:var(--red)}
+.ct-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(229,9,20,0.15)}
 .ct-icon{
   width:48px;height:48px;color:var(--red);margin-bottom:20px;
 }
@@ -523,7 +520,7 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
 #servicos { border-top: 3px solid transparent; }
 .portfolio-cta { border-top: 3px solid rgba(229,9,20,0.4); }
 .process { border-top: 3px solid rgba(229,9,20,0.15); }
-.ct-sub-hd { margin-top: 80px; margin-bottom: 0; }
+
 .testi { border-top: 3px solid rgba(229,9,20,0.4); }
 #contato { border-top: 3px solid rgba(229,9,20,0.2); }
 #sobre { border-top: 3px solid rgba(229,9,20,0.15); }
@@ -740,9 +737,6 @@ footer{background:#080808;padding:36px 80px;display:flex;align-items:center;just
     <div class="step rv" style="transition-delay:.07s"><div class="step-n">02</div><div class="step-t">Pré-produção</div><p class="step-d">Roteiro, storyboard e planejamento detalhado para garantir uma filmagem eficiente.</p></div>
     <div class="step rv" style="transition-delay:.14s"><div class="step-n">03</div><div class="step-t">Produção</div><p class="step-d">Captação com equipamentos profissionais, atenção à iluminação, áudio e composição.</p></div>
     <div class="step rv" style="transition-delay:.21s"><div class="step-n">04</div><div class="step-t">Entrega</div><p class="step-d">Edição, color grading e exportação nos formatos ideais para cada plataforma.</p></div>
-  </div>
-  <div class="ct-sub-hd">
-    <div class="sec-lbl"><span class="br">[</span>COMO<span class="rd">&nbsp;TRABALHAMOS</span><span class="br">]</span></div>
   </div>
   <div class="ct-grid">
     <div class="ct-card rv">
