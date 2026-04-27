@@ -180,18 +180,31 @@ nav{
 .srv-card{
   background:#fff;padding:44px 40px;position:relative;
   cursor:default;transition:background 0.25s;overflow:hidden;
+  perspective:600px;
 }
 .srv-card:hover{background:var(--black)}
 .srv-card:hover .srv-title{color:#fff}
 .srv-card:hover .srv-desc{color:rgba(255,255,255,0.65)}
-.srv-card:hover .srv-icon{color:var(--red)}
+.srv-card:hover .srv-icon{
+  box-shadow:0 10px 0 rgba(100,0,6,0.55),0 18px 32px rgba(229,9,20,0.45),inset 0 1px 0 rgba(255,255,255,0.22);
+  transform:translateY(-6px) rotateX(14deg) rotateY(-8deg);
+}
 .srv-num{
   position:absolute;top:20px;right:24px;
   font-family:'Anton',sans-serif;font-size:52px;
   color:rgba(0,0,0,0.05);line-height:1;
+  transition:color 0.25s;
 }
-.srv-icon{width:40px;height:40px;margin-bottom:20px;color:var(--red)}
-.srv-icon svg{width:100%;height:100%}
+.srv-card:hover .srv-num{color:rgba(255,255,255,0.05)}
+.srv-icon{
+  width:68px;height:68px;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#f52020 0%,#b5070f 100%);
+  border-radius:18px;color:#fff;
+  box-shadow:0 8px 0 rgba(120,0,8,0.55),0 12px 28px rgba(229,9,20,0.30),inset 0 1px 0 rgba(255,255,255,0.2);
+  transition:box-shadow 0.3s,transform 0.3s;
+}
+.srv-icon svg{width:30px;height:30px;flex-shrink:0}
 .srv-title{font-weight:800;font-size:18px;margin-bottom:10px;color:var(--black);transition:color 0.25s}
 .srv-desc{font-size:13px;line-height:1.75;color:var(--gray-mid)}
 /* Flowing into portfolio */
@@ -436,16 +449,26 @@ nav{
   position:relative;z-index:1;
 }
 .cta-alt{
-  margin-top:48px;font-size:13px;
-  color:rgba(255,255,255,0.28);
+  margin-top:36px;
   position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
 }
-.cta-alt a{
-  color:rgba(255,255,255,0.55);text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,0.18);
-  transition:color 0.2s;
+.cta-alt-label{
+  font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+  color:rgba(255,255,255,0.32);font-family:'Raleway',sans-serif;font-weight:600;
 }
-.cta-alt a:hover{color:#fff}
+.cta-ig-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 26px;border-radius:50px;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  color:#fff;text-decoration:none;
+  font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1.4px;text-transform:uppercase;
+  transition:opacity 0.2s,transform 0.2s;
+  box-shadow:0 4px 20px rgba(220,39,67,0.35);
+}
+.cta-ig-btn:hover{opacity:0.88;transform:translateY(-2px);}
+.cta-ig-btn svg{width:18px;height:18px;flex-shrink:0;}
 
 /* ══ SOBRE MIM ══ */
 #sobre{
@@ -678,6 +701,11 @@ footer{
   from { transform: translate(-50%,-50%) rotate(0deg); }
   to   { transform: translate(-50%,-50%) rotate(-360deg); }
 }
+@keyframes arcSpinRight  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+@keyframes arcSpinRightR { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+
+/* Mobile-only accent arcs (hidden on desktop) */
+.hero-arc-4, .hero-arc-5, .hero-arc-6 { display: none; }
 
 /* Light sweep on red diagonal */
 .hero-red-sweep {
@@ -864,13 +892,66 @@ footer{
   #hero { padding-top: 74px; min-height: 100svh; }
   .hero-center { margin-top: -36px; }
   .hero-logo-img { width: min(336px, 84vw); }
-  .hero-red {
-    width: 36%;
-    clip-path: polygon(68% 0%,100% 0%,100% 100%,22% 100%);
-  }
+  .hero-red { display: none; }
   .hero-lens { width: 340px; height: 340px; left: -60px; }
   .hero-arc { display: block; top: 24%; left: 10%; }
   .hero-arc-1 { width: 330px; height: 330px; }
+  .hero-arc-4 {
+    display: block;
+    width: 360px; height: 360px;
+    top: 18%; right: -130px; left: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 148deg,
+      rgba(229,9,20,0.02) 162deg,
+      rgba(229,9,20,0.38) 188deg,
+      rgba(229,9,20,0.78) 220deg,
+      rgba(229,9,20,0.88) 248deg,
+      rgba(229,9,20,0.55) 275deg,
+      rgba(229,9,20,0.14) 295deg,
+      rgba(229,9,20,0.02) 308deg,
+      transparent 320deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.6px), white calc(100% - 1.6px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1.6px), white calc(100% - 1.6px));
+    animation: arcSpinRight 22s linear infinite;
+  }
+  .hero-arc-5 {
+    display: block;
+    width: 220px; height: 220px;
+    bottom: 24%; right: -55px; left: auto; top: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 90deg,
+      rgba(229,9,20,0.03) 108deg,
+      rgba(229,9,20,0.42) 135deg,
+      rgba(229,9,20,0.60) 168deg,
+      rgba(229,9,20,0.32) 198deg,
+      rgba(229,9,20,0.04) 215deg,
+      transparent 228deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+    animation: arcSpinRightR 16s linear infinite;
+  }
+  .hero-arc-6 {
+    display: block;
+    width: 500px; height: 500px;
+    top: 38%; right: -220px; left: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 170deg,
+      rgba(229,9,20,0.01) 188deg,
+      rgba(229,9,20,0.12) 215deg,
+      rgba(229,9,20,0.18) 248deg,
+      rgba(229,9,20,0.10) 278deg,
+      rgba(229,9,20,0.02) 300deg,
+      transparent 315deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+    animation: arcSpinRight 40s linear infinite reverse;
+  }
   .hero-arc-2 { width: 244px; height: 244px; }
   .hero-arc-3 { width: 410px; height: 410px; opacity: 0.8; }
   .hero-float-line { display: block; }
@@ -985,6 +1066,10 @@ footer{
   <div class="hero-arc hero-arc-1"></div>
   <div class="hero-arc hero-arc-2"></div>
   <div class="hero-arc hero-arc-3"></div>
+  <!-- Mobile-only extra arcs (replace red stripe) -->
+  <div class="hero-arc-4"></div>
+  <div class="hero-arc-5"></div>
+  <div class="hero-arc-6"></div>
 
   <!-- Dot grids -->
   <div class="hero-dots-tr">
@@ -1161,7 +1246,7 @@ footer{
 <!-- ══ CONTATO ══ -->
 <section id="contato">
   <p class="cta-eyebrow rv">Agenda Aberta</p>
-  <h2 class="cta-headline rv">PRONTO PRA<br><span>COMEÇAR?</span></h2>
+  <h2 class="cta-headline rv">VAMOS<br>CRIAR<br><span>JUNTOS</span></h2>
   <p class="cta-sub rv">Envie uma mensagem — respondo em até 24h para conversarmos sobre o seu projeto.</p>
   <div class="cta-stats-wrap rv">
     <div class="cta-stat">
@@ -1185,7 +1270,13 @@ footer{
     <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
   <p class="cta-microcopy">Gratuito e sem compromisso — só uma conversa</p>
-  <p class="cta-alt">Prefere o Instagram? <a href="https://www.instagram.com/rosuaudiovisual/" target="_blank" rel="noopener">@rosuaudiovisual →</a></p>
+  <div class="cta-alt">
+    <span class="cta-alt-label">ou nos siga no Instagram</span>
+    <a class="cta-ig-btn" href="https://www.instagram.com/rosuaudiovisual/?hl=en" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @rosuaudiovisual
+    </a>
+  </div>
 </section>
 
 <!-- ══ DEPOIMENTOS ══ -->
@@ -1212,8 +1303,8 @@ footer{
   </div>
   <div class="me-text">
     <div class="me-role">Criador de Conteúdo Visual</div>
-    <h2 class="me-name">ROSU<br>STUDIO</h2>
-    <p class="me-bio">Sou um videomaker apaixonado por <strong>contar histórias através das imagens</strong>. Com base em Sorocaba, atuo em toda a região de São Paulo na produção de vídeos institucionais, conteúdo para redes sociais e pós-produção para marcas que querem se destacar.</p>
+    <h2 class="me-name">Lucas<br>Suguitani</h2>
+    <p class="me-bio">Sou um videomaker apaixonado por <strong>contar histórias através das imagens</strong>. Com base em <strong>Sorocaba</strong>, atuo em <strong>toda a região de São Paulo</strong> na produção de vídeos institucionais, conteúdo para redes sociais e pós-produção para marcas que querem se destacar.</p>
     <div class="me-tags">
       <span class="me-tag">Videomaker</span>
       <span class="me-tag">Editor</span>
@@ -1222,10 +1313,7 @@ footer{
       <span class="me-tag">Sorocaba</span>
     </div>
     <div class="me-social">
-      <a href="https://www.instagram.com/rosuaudiovisual/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="#" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
-      <a href="#" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-      <a href="#" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+      <a href="https://www.instagram.com/lucas.sugui/?hl=en" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
     </div>
   </div>
 </section>
@@ -1275,15 +1363,68 @@ document.querySelectorAll('.rv').forEach(el=>rv.observe(el));
   #hero { padding-top: 74px; min-height: 100svh; }
   .hero-center { margin-top: -36px; }
   .hero-logo-img { width: min(336px, 84vw); }
-  .hero-red {
-    width: 36%;
-    clip-path: polygon(68% 0%,100% 0%,100% 100%,22% 100%);
-  }
+  .hero-red { display: none; }
   .hero-lens { width: 340px; height: 340px; left: -60px; }
   .hero-arc { display: block; top: 24%; left: 10%; }
   .hero-arc-1 { width: 330px; height: 330px; }
   .hero-arc-2 { width: 244px; height: 244px; }
   .hero-arc-3 { width: 410px; height: 410px; opacity: 0.8; }
+  .hero-arc-4 {
+    display: block;
+    width: 360px; height: 360px;
+    top: 18%; right: -130px; left: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 148deg,
+      rgba(229,9,20,0.02) 162deg,
+      rgba(229,9,20,0.38) 188deg,
+      rgba(229,9,20,0.78) 220deg,
+      rgba(229,9,20,0.88) 248deg,
+      rgba(229,9,20,0.55) 275deg,
+      rgba(229,9,20,0.14) 295deg,
+      rgba(229,9,20,0.02) 308deg,
+      transparent 320deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.6px), white calc(100% - 1.6px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1.6px), white calc(100% - 1.6px));
+    animation: arcSpinRight 22s linear infinite;
+  }
+  .hero-arc-5 {
+    display: block;
+    width: 220px; height: 220px;
+    bottom: 24%; right: -55px; left: auto; top: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 90deg,
+      rgba(229,9,20,0.03) 108deg,
+      rgba(229,9,20,0.42) 135deg,
+      rgba(229,9,20,0.60) 168deg,
+      rgba(229,9,20,0.32) 198deg,
+      rgba(229,9,20,0.04) 215deg,
+      transparent 228deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1.2px), white calc(100% - 1.2px));
+    animation: arcSpinRightR 16s linear infinite;
+  }
+  .hero-arc-6 {
+    display: block;
+    width: 500px; height: 500px;
+    top: 38%; right: -220px; left: auto;
+    background: conic-gradient(
+      transparent 0deg,
+      transparent 170deg,
+      rgba(229,9,20,0.01) 188deg,
+      rgba(229,9,20,0.12) 215deg,
+      rgba(229,9,20,0.18) 248deg,
+      rgba(229,9,20,0.10) 278deg,
+      rgba(229,9,20,0.02) 300deg,
+      transparent 315deg 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+    mask:         radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+    animation: arcSpinRight 40s linear infinite reverse;
+  }
   .hero-float-line { display: block; }
   .hero-float-line-1 { bottom: 245px; left: 61%; width: 28px; }
   .hero-float-line-2 { bottom: 232px; left: 67%; width: 16px; }
